@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% form_theme formConsole 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+<h1>Création d'une console</h1>
+<div class="container">
+{{ form_start(formConsole) }}
+{{ form_row(formConsole.nomConsole, {'attr':{'placeholder':"Nom de la console"}}) }}
+{{ form_row(formConsole.marque, {'attr':{'placeholder':"Marque"}}) }}
+{{ form_row(formConsole.couleur, {'attr':{'placeholder':"Couleur"}}) }}
+{{ form_row(formConsole.sortieAv, {'attr':{'placeholder':"Sortie AV"}}) }}
+{{ form_row(formConsole.etat, {'attr':{'placeholder':"Etat"}}) }}
+<button type="submit" class="btn btn-success">Ajouter la console</button>
+{{ form_end(formConsole) }}
+</br>
+<div class="float-right">
+	<a href="{{ path('liste_consoles') }}" class="btn btn-success " role="button">
+		<span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des consoles
+	</a>
+</div>
+</div>
+{% endblock %}

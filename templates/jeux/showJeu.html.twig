@@ -1,0 +1,33 @@
+          <div class="container">
+           
+                  <h4>Détails {{ jeu.nom }}</h4>
+               
+                <div>
+              		<p><span class="glyphicon glyphicon-user"></span>{{jeu.developpeur }}</p>
+                    <p><span class="glyphicon glyphicon-globe"></span>{{jeu.region  }}</p>
+                    <p><span class="glyphicon glyphicon-time"></span>{{jeu.anneeParution  }}</p>
+                    <p><span class="glyphicon glyphicon-cog"></span>{{jeu.etat  }}</p>
+                    <p><span class="glyphicon glyphicon-info-sign">max {{jeu.nbJoueurMax  }}</p>
+            	</div>
+                <div>
+                	<a href="{{path('remove_jeu', {'id':jeu.id})}}" class="btn btn-success" role="button">
+                		<span class="glyphicon glyphicon-trash"></span> Supprimer un jeu
+					</a>
+	 
+                </div>
+                  {% if app.user %}
+              <div>
+                  {{form_start(resultatForm)}}
+                  {{ form_row(resultatForm.mode, {'attr':{'placeholder':"Mode du jeu"}}) }}
+                  {{ form_row(resultatForm.score, {'attr':{'placeholder':"Score"}}) }}
+                  {{ app.user.username }}
+                  {{ form_row(resultatForm.avatar, {'attr':{'placeholder':"Avatar"}}) }}
+                  <button type="submit" class="btn btn-success">Ajouter le résultat</button>
+                  {{ form_end(resultatForm) }}
+              </div>
+              	{% endif %}
+            
+          </div>
+
+
+

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% form_theme formJeu 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+<h1>Création d'un jeu</h1>
+<div class="container">
+{{ form_start(formJeu) }}
+{{ form_row(formJeu.nom, {'attr':{'placeholder':"Nom du jeu"}}) }}
+{{ form_row(formJeu.developpeur, {'attr':{'placeholder':"Développeur"}}) }}
+{{ form_row(formJeu.region, {'attr':{'placeholder':"Région"}}) }}
+{{ form_row(formJeu.anneeParution, {'attr':{'placeholder':"Année de parution"}}) }}
+{{ form_row(formJeu.etat, {'attr':{'placeholder':"Etat"}}) }}
+{{ form_row(formJeu.nbJoueurMax, {'attr':{'placeholder':"Nombre de joueurs max"}}) }}
+{{ form_row(formJeu.categorieJeu, {'attr':{'placeholder':"Catégorie"}}) }}
+{{ form_row(formJeu.consoles) }}
+<button type="submit" class="btn btn-success">Ajouter le jeu</button>
+{{ form_end(formJeu) }}
+</br>
+<div class="float-right">
+	<a href="{{ path('liste_jeux') }}" class="btn btn-success " role="button">
+		<span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des jeux
+	</a>
+</div>
+</div>
+{% endblock %}
+  

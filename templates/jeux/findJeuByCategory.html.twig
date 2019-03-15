@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+<h2>Les jeux par catégorie</h2>
+{% for catJeu in data %}
+<h3>{{ catJeu.nom }}</h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Développeur</th>
+      <th scope="col">Région</th>
+      <th scope="col">Année de parution</th>
+      <th scope="col">Etat</th>
+      <th scope="col">Joueurs max</th>
+      	{% if is_granted('ROLE_ADMIN') %}
+      <th scope="col"><span class="glyphicon glyphicon-cog"></span>Actions</th>
+      	{% endif %}
+    </tr>
+  </thead>
+  {% for jeu in catJeu.jeux %}
+ 
+  <tbody>
+    <tr class="table-active">
+      
+      <td>{{ jeu.nom }}</td>
+      <td>{{ jeu.developpeur }}</td>
+      <td>{{ jeu.region }}</td>
+      <td>{{ jeu.anneeParution }}</td>
+      <td>{{ jeu.etat }}</td>
+      <td>{{ jeu.nbJoueurMax }}</td>
+      	{% if is_granted('ROLE_ADMIN') %}
+      <td>
+      		<!-- Trigger the modal with a button -->      	
+      	  <a class="btn btn-default" href="{{path('show_jeu', {'id':jeu.id})}}" data-toggle="modal" role="button">
+      		Détails</a>     
+          <a href="{{ path('edit_jeu', {'id':jeu.id}) }}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a>  		      		      		
+      	  <a href="{{ path('remove_jeu', {'id':jeu.id}) }}" class="btn"><span class="glyphicon glyphicon-trash"></span></a>
+      </td>
+      	{% endif %}
+    </tr>
+    
+  </tbody>
+  {% endfor %}
+</table> 
+ {% endfor %}
+ 	{% if is_granted('ROLE_ADMIN') %}
+	<p>
+		<a href="{{ path('create_jeu') }}" class="btn btn-success" role="button">
+			<span class="glyphicon glyphicon-plus"></span> Ajouter un jeu
+		</a>
+	</p> 
+	{% endif %}
+</div>
+{% endblock %}

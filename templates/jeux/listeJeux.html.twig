@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+<h2>Les jeux</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Développeur</th>
+      <th scope="col">Région</th>
+      <th scope="col">Année</th>
+      <th scope="col">Etat</th>
+      <th scope="col">Joueurs</th>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Console</th>
+      <th scope="col">Résultats</th>
+      {% if is_granted('ROLE_ADMIN') %}
+      	<th scope="col"><span class="glyphicon glyphicon-cog"></span>Actions</th>
+      {% endif %}
+    </tr>
+  </thead>
+  {% for jeu in jeux %}
+ 
+  <tbody>
+    <tr class="table-active">
+      
+      <td>{{ jeu.nom }}</td>
+      <td>{{ jeu.developpeur }}</td>
+      <td>{{ jeu.region }}</td>
+      <td>{{ jeu.anneeParution }}</td>
+      <td>{{ jeu.etat }}</td>
+      <td>{{ jeu.nbJoueurMax }}</td>
+      <td>{{ jeu.categorieJeu.nom }}</td>  
+      	{% for console in jeu.consoles %}
+      <td>{{ console.nomConsole }}</td>  
+      	{% endfor %}  
+      <td>
+      	<a href="{{ path('show_jeu_resultats', {'id':jeu.id}) }}" class="btn btn-success" role="button">Voir les résultats</a>
+      </td>
+      <td><a href="{{ path('edit_jeu', {'id':jeu.id}) }}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a></td>
+      	{% if is_granted('ROLE_ADMIN') %}
+      <td>
+      		<!-- Trigger the modal with a button -->      	
+      	  <a class="btn btn-default" href="{{path('show_jeu', {'id':jeu.id})}}" data-toggle="modal" role="button">
+      		Détails</a>     
+          <a href="{{ path('edit_jeu', {'id':jeu.id}) }}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a>  		      		      		
+      	  <a href="{{ path('remove_jeu', {'id':jeu.id}) }}" class="btn"><span class="glyphicon glyphicon-trash"></span></a>
+      	  <a href="{{ path('create_jeu_resultats', {'id':jeu.id}) }}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span> Ajouter un résultat
+		</a>
+      </td>
+      	{% endif %}
+    </tr>
+    
+  </tbody>
+  {% endfor %}
+</table> 
+	{% if is_granted('ROLE_ADMIN') %}
+	<p>
+		<a href="{{ path('create_jeu') }}" class="btn btn-success" role="button">
+			<span class="glyphicon glyphicon-plus"></span> Ajouter un jeu
+		</a>
+	</p>
+	{% endif %} 
+</div>
+{% endblock %}

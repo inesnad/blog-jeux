@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% form_theme formResultat 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+<h1>Création d'un résultat</h1>
+<div class="container">
+{{ form_start(formResultat) }}
+{{ form_row(formResultat.mode, {'attr':{'placeholder':"Mode du jeu"}}) }}
+{{ form_row(formResultat.score, {'attr':{'placeholder':"Score"}}) }}
+{{ form_row(formResultat.avatar, {'attr':{'placeholder':"Avatar"}}) }}
+{{ form_row(formResultat.joueur, {'attr':{'placeholder':"Nom du joueur"}}) }}
+<button type="submit" class="btn btn-success">Ajouter le résultat</button>
+{{ form_end(formResultat) }}
+</br>
+<div class="float-right">
+	<a href="{{ path('liste_jeux') }}" class="btn btn-success " role="button">
+		<span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des résultats
+	</a>
+</div>
+</div>
+{% endblock %}
+  

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% form_theme formEditAccessoire 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+<h1>Création d'un accessoire</h1>
+<div class="container">
+{{ form_start(formEditAccessoire) }}
+{{ form_row(formEditAccessoire.nom) }}
+{{ form_row(formEditAccessoire.marque) }}
+{{ form_row(formEditAccessoire.couleur) }}
+{{ form_row(formEditAccessoire.etat) }}
+{{ form_row(formEditAccessoire.typeAccessoire) }}
+{{ form_row(formEditAccessoire.consoles) }}
+<button type="submit" class="btn btn-success">Modifier l'accessoire</button>
+{{ form_end(formEditAccessoire) }}
+</br>
+<div class="float-right">
+	<a href="{{ path('show_accessoires_byconsole') }}" class="btn btn-success " role="button">
+		<span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des accessoires
+	</a>
+</div>
+</div>
+{% endblock %}

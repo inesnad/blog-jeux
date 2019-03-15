@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        
+		<meta name="viewport" content="width=device-width, initial-scale=1">       
+        <title>{% block title %}JMC Retrogaming{% endblock %}</title>
+        {% block stylesheets %}
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+        <!-- Bootstrap core CSS -->
+    	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="css/full-width-pics.css" rel="stylesheet">	
+    	 {% endblock %}
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>        
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+      
+    </head>
+    
+    <body>       
+     <nav class="navbar navbar-expand-lg navbar-inverse fixed-top">     
+      <div class="container">        
+          <a class="navbar-brand" href="{{ path('page_accueil') }}"><img class="public/img-responsive" src="/img/logo-jmc.png" alt="logo" width="50" height="50"></a>
+         	
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav">      
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('liste_jeux') }}">Les jeux
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('liste_jeux') }}">Tous</a></li>
+                  <li><a href="{{ path('show_jeux_bycategory') }}">Par catégorie</a></li>
+                  <li><a href="{{ path('show_jeux_byconsole') }}">Par console</a></li>          
+                </ul>
+              </li> 
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('liste_consoles') }}">Les consoles
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('liste_consoles') }}">Toutes</a></li>
+                  <li><a href="{{ path('show_accessoires_byconsole') }}">Les accessoires</a></li>         
+                </ul>
+              </li>                        
+              <li><a href="#">A propos</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{ path('security_registration') }}"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+              {% if not app.user %}
+              	<li><a href="{{ path('security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
+              {% else %}
+             	 <li><a href="{{ path('security_logout') }}"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+              {% endif %}
+            </ul>
+          </div>
+      </div>
+</nav> 
+       
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>

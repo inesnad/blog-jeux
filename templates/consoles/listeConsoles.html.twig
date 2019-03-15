@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+<h1>Les consoles</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Marque</th>
+      <th scope="col">Couleur</th>
+      <th scope="col">Sortie A.V</th>
+      <th scope="col">Etat</th>
+          {% if is_granted('ROLE_ADMIN') %}
+      <th scope="col"><span class="glyphicon glyphicon-cog"></span>Actions</th>
+      	  {% endif %}
+    </tr>
+  </thead>
+  {% for console in consoles %}
+ 
+  <tbody>
+    <tr class="table-active">
+      
+      <td>{{ console.nomConsole }}</td>
+      <td>{{ console.marque }}</td>
+      <td>{{ console.couleur }}</td>
+      <td>{{ console.sortieAv }}</td>
+      <td>{{ console.etat }}</td>
+      	{% if is_granted('ROLE_ADMIN') %}
+      <td>
+      		<!-- Trigger the modal with a button -->      	
+      	  <a class="btn btn-default" href="{{path('show_console', {'id':console.id})}}" data-toggle="modal" role="button">
+      		Détails</a>     
+          <a href="{{ path('edit_console', {'id':console.id}) }}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a>  		      		      		
+      	  <a href="{{ path('remove_console', {'id':console.id}) }}" class="btn"><span class="glyphicon glyphicon-trash"></span></a>
+      </td>
+      	{% endif %}
+    </tr>
+    
+  </tbody>
+  {% endfor %}
+</table> 
+	{% if is_granted('ROLE_ADMIN') %}
+	<p>
+		<a href="{{ path('create_console') }}" class="btn btn-success" role="button">
+			<span class="glyphicon glyphicon-plus"></span> Ajouter une console
+		</a>
+	</p> 
+	{% endif %}
+</div>
+{% endblock %}

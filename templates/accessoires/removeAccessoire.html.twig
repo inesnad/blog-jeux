@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+	<h3>L'accessoire a bien été supprimé</h3>
+		<p>
+			<a href="{{ path('show_accessoires_byconsole') }}" class="btn btn-success" role="button">
+				<span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des accessoires
+			</a>
+		</p>
+</div>
+{% endblock %}

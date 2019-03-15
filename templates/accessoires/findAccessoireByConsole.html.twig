@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+<h2>Les accessoires par console</h2>
+{% for console in data %}
+<h3>{{ console.nomConsole }}</h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Marque</th>
+      <th scope="col">Couleur</th>
+      <th scope="col">Etat</th>
+      <th scope="col">Type d'accessoire</th>
+      	{% if is_granted('ROLE_ADMIN') %}
+      <th scope="col"><span class="glyphicon glyphicon-cog"></span>Actions</th>
+      	{% endif %}
+    </tr>
+  </thead>
+  {% for accessoire in console.accessoires %}
+ 
+  <tbody>
+    <tr class="table-active">
+      
+      <td>{{ accessoire.nom }}</td>
+      <td>{{ accessoire.marque }}</td>
+      <td>{{ accessoire.couleur }}</td>
+      <td>{{ accessoire.etat }}</td>
+      <td>{{ accessoire.typeAccessoire }}</td>
+      {% if is_granted('ROLE_ADMIN') %}
+      <td>
+      		<!-- Trigger the modal with a button -->      	
+      	  <a class="btn btn-default" href="#" data-toggle="modal" role="button">
+      		Détails</a>     
+          <a href="{{ path('edit_accessoire', {'id':accessoire.id}) }}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a>  		      		      		
+      	  <a href="{{ path('remove_accessoire', {'id':accessoire.id}) }}" class="btn"><span class="glyphicon glyphicon-trash"></span></a>
+      </td>
+      {% endif %}
+    </tr>
+    
+  </tbody>
+  {% endfor %}
+</table> 
+ {% endfor %}
+ {% if is_granted('ROLE_ADMIN') %}
+	<p>
+		<a href="{{ path('create_accessoire') }}" class="btn btn-success" role="button">
+			<span class="glyphicon glyphicon-plus"></span> Ajouter un accessoire
+		</a>
+	</p> 
+ {% endif %}
+</div>
+{% endblock %}

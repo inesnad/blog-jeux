@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% form_theme formEditConsole 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+<h1>Modification d'une console</h1>
+<div class="container">
+{{ form_start(formEditConsole) }}
+{{ form_row(formEditConsole.nomConsole) }}
+{{ form_row(formEditConsole.marque) }}
+{{ form_row(formEditConsole.couleur) }}
+{{ form_row(formEditConsole.sortieAv) }}
+{{ form_row(formEditConsole.etat) }}
+<button type="submit" class="btn btn-success">Modifier la console</button>
+{{ form_end(formEditConsole) }}
+</br>
+<div class="float-right">
+	<a href="{{ path('liste_consoles') }}" class="btn btn-success " role="button">
+		<span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des consoles
+	</a>
+</div>
+</div>
+{% endblock %}

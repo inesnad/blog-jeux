@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+  <div class="jumbotron">
+    <h2>{{ console.nomConsole }}</h2>
+    <p><span class="glyphicon glyphicon-home"></span>{{console.marque }}</p>
+    <p><span class="glyphicon glyphicon-tag"></span>{{console.couleur  }}</p>
+    <p><span class="glyphicon glyphicon-volume-up"></span>{{console.sortieAv  }}</p>
+    <p><span class="glyphicon glyphicon-cog"></span>{{console.etat  }}</p>   
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+	<h3>Le jeu a bien été supprimé</h3>
+		<p>
+			<a href="{{ path('liste_jeux') }}" class="btn btn-success" role="button">
+				<span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des jeux
+			</a>
+		</p>
+</div>
+{% endblock %}

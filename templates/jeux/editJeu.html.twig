@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% form_theme formEditJeu 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+<h1>Modification d'un jeu</h1>
+<div class="container">
+{{ form_start(formEditJeu) }}
+{{ form_row(formEditJeu.nom) }}
+{{ form_row(formEditJeu.developpeur) }}
+{{ form_row(formEditJeu.region) }}
+{{ form_row(formEditJeu.anneeParution) }}
+{{ form_row(formEditJeu.etat) }}
+{{ form_row(formEditJeu.nbJoueurMax) }}
+{{ form_row(formEditJeu.categorieJeu) }}
+{{ form_row(formEditJeu.consoles) }}
+<button type="submit" class="btn btn-success">Modifier le jeu</button>
+{{ form_end(formEditJeu) }}
+</br>
+<div class="float-right">
+	<a href="{{ path('liste_jeux') }}" class="btn btn-success " role="button">
+		<span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste des jeux
+	</a>
+</div>
+</div>
+{% endblock %}
